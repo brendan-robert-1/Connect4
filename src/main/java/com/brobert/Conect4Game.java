@@ -12,6 +12,7 @@ public class Conect4Game extends Game {
 
 
 
+	//start the game
 	@Override
 	public void start() {
 		human(Token.X);
