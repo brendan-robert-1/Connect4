@@ -58,41 +58,50 @@ public class Connect4Board implements TwoDimensionalBoard {
 
 
 	@Override
-	public void printBoard() {
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < WIDTH; i++) {
-			System.out.print("  " + (i + 1) + " ");
+			sb.append("  " + (i + 1) + " ");
 		}
-		System.out.print("\n");
+		sb.append("\n");
 		for (int w = 0; w < WIDTH; w++) {
-			System.out.print("----");
+			sb.append("----");
 		}
-		System.out.print("-\n");
+		sb.append("-\n");
 		for (int i = 0; i < HEIGHT; i++) {
-			System.out.print("|");
+			sb.append("|");
 			for (int j = 0; j < WIDTH; j++) {
 				if (squares[j][i] == Token.X) {
-					System.out.print(" X ");
+					sb.append(" X ");
 				} else if (squares[j][i] == Token.O) {
-					System.out.print(" O ");
+					sb.append(" O ");
 				} else {
-					System.out.print("   ");
+					sb.append("   ");
 				}
 				if (j != HEIGHT) {
-					System.out.print("|");
+					sb.append("|");
 				}
 			}
-			System.out.print("|");
+			sb.append("|");
 			if (i != HEIGHT) {
-				System.out.print("\n");
+				sb.append("\n");
 				for (int w = 0; w < WIDTH; w++) {
-					System.out.print("----");
+					sb.append("----");
 				}
-				System.out.print("-");
-				System.out.print("\n");
+				sb.append("-");
+				sb.append("\n");
 			}
 
 		}
-		System.out.print("\n");
+		sb.append("\n");
+		return sb.toString();
+	}
+
+
+
+	@Override
+	public void printBoard() {
+		System.out.println(toString());
 	}
 
 
@@ -133,7 +142,6 @@ public class Connect4Board implements TwoDimensionalBoard {
 				}
 			}
 		}
-
 		for (int i = 3; i < WIDTH; i++) {
 			for (int j = 3; j < HEIGHT; j++) {
 				if (at(i, j) == player && at(i - 1, j - 1) == player && at(i - 2, j - 2) == player && at(i - 3, j - 3) == player) {
@@ -163,7 +171,6 @@ public class Connect4Board implements TwoDimensionalBoard {
 					}
 				}
 				if (count == 4) {
-					System.out.println("Vertical win for " + token);
 					return true;
 				}
 				count = 0;
@@ -184,8 +191,6 @@ public class Connect4Board implements TwoDimensionalBoard {
 		for (int i = 0; i < HEIGHT; i++) {
 			int startingIdx = 0, count = 0;
 			for (int j = 0; j < WIDTH - 3; j++) {
-
-				//Starting at the starting Idx go rigth 4
 				for (int k = 0; k < 4; k++) {
 					Token here = at(startingIdx + k, i);
 					if (here == token) {

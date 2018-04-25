@@ -2,9 +2,16 @@ package com.brobert;
 
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.brobert.TwoDimensionalBoard.Token;
 
 public class Conect4Game extends Game {
+
+	private static final Logger logger = LoggerFactory.getLogger(Conect4Game.class);
+
+
 
 	public Conect4Game() {
 		setBoard(new Connect4Board());
@@ -16,6 +23,8 @@ public class Conect4Game extends Game {
 	@Override
 	public void start() {
 		human(Token.X);
+		logger.info("Human is [" + getHuman() + "]");
+		logger.info("Computer is [" + getComputer() + "]");
 		ComputerPlayer player = new AlphaBetaMinimaxComputerPlayer(getComputer());
 		Scanner scanner = new Scanner(System.in);
 		getBoard().printBoard();
@@ -64,6 +73,7 @@ public class Conect4Game extends Game {
 	@Override
 	public void printTurn(Token square, Coordinate coordinate) {
 		System.out.println();
+		logger.info("Turn #" + turns + ": " + square + " placed a token at " + coordinate);
 		System.out.println("Turn #" + turns + ": " + square + " placed a token at " + coordinate);
 		getBoard().printBoard();
 		System.out.println();
