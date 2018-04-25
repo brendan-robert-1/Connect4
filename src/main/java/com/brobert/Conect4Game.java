@@ -24,7 +24,9 @@ public class Conect4Game extends Game {
 	public void start() {
 		human(Token.X);
 		logger.info("Human is [" + getHuman() + "]");
+		System.out.println("Human is [" + getHuman() + "]");
 		logger.info("Computer is [" + getComputer() + "]");
+		System.out.println("Computer is [" + getComputer() + "]");
 		ComputerPlayer player = new AlphaBetaMinimaxComputerPlayer(getComputer());
 		Scanner scanner = new Scanner(System.in);
 		getBoard().printBoard();
@@ -76,6 +78,7 @@ public class Conect4Game extends Game {
 		logger.info("Turn #" + turns + ": " + square + " placed a token at " + coordinate);
 		System.out.println("Turn #" + turns + ": " + square + " placed a token at " + coordinate);
 		getBoard().printBoard();
+		logger.info("\n" + getBoard().toString());
 		System.out.println();
 	}
 
