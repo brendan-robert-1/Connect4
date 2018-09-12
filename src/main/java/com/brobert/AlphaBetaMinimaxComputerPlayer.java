@@ -9,6 +9,7 @@ import java.util.List;
 import com.brobert.TwoDimensionalBoard.Token;
 
 /**
+ * TEST COMMENT INTELLIJ
  * @author brobert
  *
  */
